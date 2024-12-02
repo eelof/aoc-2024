@@ -1,5 +1,5 @@
 const fs = require("fs");
-const lines = fs.readFileSync("input2.txt", "utf-8").split("\n");
+const lines = fs.readFileSync("input.txt", "utf-8").split("\n");
 
 /*const example = `7 6 4 2 1
 1 2 7 8 9
