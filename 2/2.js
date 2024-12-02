@@ -1,12 +1,14 @@
 const fs = require("fs");
-const lines = fs.readFileSync("input.txt", "utf-8").split("\n");
-/*const lines = `7 6 4 2 1
+const lines = fs.readFileSync("input2.txt", "utf-8").split("\n");
+
+/*const example = `7 6 4 2 1
 1 2 7 8 9
 9 7 6 2 1
 1 3 2 4 5
 8 6 4 4 1
 1 3 6 7 9`.split("\n");*/
 
+// Evaluate an array of ints, determining safeNess of the entire collection
 const isSafe = (ints) => {
   for (let i = 0; i < ints.length; i++) {
     let prev = ints[i - 1];
@@ -14,7 +16,7 @@ const isSafe = (ints) => {
     let next = ints[i + 1];
 
     if (prev) {
-      if (prev - cur < -3 || prev - cur > 3 || prev == cur) {
+      if (prev == cur || Math.abs(prev - cur) > 3) {
         return false;
       }
 
@@ -30,22 +32,13 @@ const isSafe = (ints) => {
   return true;
 };
 
+// Return copy of array without indicated index
 const sub = (arr, idx) => arr.filter((_, i) => i != idx);
 
-const r = lines.filter((line) => {
-  let ints = line.split(" ").map((n) => parseInt(n));
-  let result = isSafe(ints);
-
-  if (result) return true;
-
-  for (let i = 0; i < ints.length; i++) {
-    // Early return if a safe version of array is found
-    if (isSafe(sub(ints, i))) {
-      return true;
-    }
-  }
-
-  return false;
-}).length;
+const r = lines
+  .map((line) => line.split(" ").map((n) => parseInt(n)))
+  .filter((ints) =>
+    isSafe(ints) ? true : ints.some((_, idx) => isSafe(sub(ints, idx)))
+  ).length;
 
 console.log(r);
