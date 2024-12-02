@@ -1,31 +1,32 @@
 const fs = require("fs");
 
-const lines = fs.readFileSync("input.txt", "utf-8").split("\n");
-
-const sum = (arr) => arr.reduce((a, b) => a + b, 0);
-
-/*const lines = `3   4
+const example = `3   4
 4   3
 2   5
 1   3
 3   9
-3   3`.split("\n");*/
+3   3`.split("\n");
+
+const lines = fs.readFileSync("input.txt", "utf-8").split("\n");
+
+// Insert n into sorted position of arr (ascending)
+const insert = (arr, n) => {
+  for (let i = 0; i <= arr.length; i++) {
+    if (arr[i] <= n || arr[i] == undefined) {
+      arr.splice(i, 0, n);
+      return;
+    }
+  }
+};
 
 let left = [];
 let right = [];
 
-console.log(left, right);
-
 lines.forEach((line) => {
-  let segments = line.split("   ");
-  const l = parseInt(segments[0]);
-  const r = parseInt(segments[1]);
-  left.push(l);
-  right.push(r);
+  const [l, r] = line.split("   ").map((n) => parseInt(n));
+  insert(left, l);
+  insert(right, r);
 });
-
-left.sort();
-right.sort();
 
 const result = left
   .map((n, idx) => Math.abs(right[idx] - n))
