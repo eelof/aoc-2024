@@ -28,8 +28,6 @@ lines.forEach((line) => {
   insert(right, r);
 });
 
-const result = left
-  .map((n, idx) => Math.abs(right[idx] - n))
-  .reduce((a, b) => a + b, 0);
+const result = left.reduce((acc, n, idx) => Math.abs(right[idx] - n) + acc, 0);
 
 console.log(result);

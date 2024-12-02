@@ -28,8 +28,6 @@ lines.forEach((line) => {
   occurrences.set(r, (occurrences.get(r) ?? 0) + 1);
 });
 
-const r = left
-  .map((n) => n * (occurrences.get(n) ?? 0))
-  .reduce((a, b) => a + b, 0);
+const r = left.reduce((acc, n) => n * (occurrences.get(n) ?? 0) + acc);
 
 console.log(r);
