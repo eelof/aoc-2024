@@ -1,12 +1,12 @@
 const fs = require("fs");
 const lines = fs.readFileSync("input.txt", "utf-8").split("\n");
 
-/*const example = `7 6 4 2 1
+const example = `7 6 4 2 1
 1 2 7 8 9
 9 7 6 2 1
 1 3 2 4 5
 8 6 4 4 1
-1 3 6 7 9`.split("\n");*/
+1 3 6 7 9`.split("\n");
 
 // Evaluate an array of ints, determining safeNess of the entire collection
 const isSafe = (ints) => {

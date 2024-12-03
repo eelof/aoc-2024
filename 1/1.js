@@ -13,8 +13,7 @@ const lines = fs.readFileSync("input.txt", "utf-8").split("\n");
 const insert = (arr, n) => {
   for (let i = 0; i <= arr.length; i++) {
     if (arr[i] <= n || arr[i] == undefined) {
-      arr.splice(i, 0, n);
-      return;
+      return arr.splice(i, 0, n);
     }
   }
 };
