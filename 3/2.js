@@ -1,5 +1,3 @@
-const { match } = require("assert");
-const { exec } = require("child_process");
 const fs = require("fs");
 const input = fs.readFileSync("input.txt", "utf-8");
 
